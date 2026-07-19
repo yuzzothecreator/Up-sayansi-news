@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AppProviders } from "@/providers/app-providers";
 import { getCurrentUser } from "@/lib/auth";
 import { createMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/config/site";
+import { COOKIE_NAMES } from "@/lib/constants";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,7 +31,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const themeInitScript = `(function(){try{var k=${JSON.stringify("pulse-theme")};var t=localStorage.getItem(k)||"system";var d=window.matchMedia("(prefers-color-scheme: dark)").matches;var dark=t==="dark"||(t==="system"&&d);document.documentElement.classList.toggle("dark",dark);}catch(e){}})();`;
+const themeInitScript = `(function(){try{var k=${JSON.stringify(COOKIE_NAMES.theme)};var t=localStorage.getItem(k)||"system";var d=window.matchMedia("(prefers-color-scheme: dark)").matches;var dark=t==="dark"||(t==="system"&&d);document.documentElement.classList.toggle("dark",dark);}catch(e){}})();`;
 
 export default async function RootLayout({
   children,
@@ -44,10 +46,10 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
       suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body className="min-h-full flex flex-col font-sans antialiased">
+        <Script id="pulse-theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <AppProviders initialUser={user}>{children}</AppProviders>
       </body>
     </html>

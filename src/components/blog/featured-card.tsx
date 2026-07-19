@@ -25,6 +25,8 @@ export function FeaturedCard({ post, className, priority = false }: FeaturedCard
     .join("")
     .slice(0, 2);
 
+  const postHref = `/blog/${post.slug}`;
+
   return (
     <motion.article
       initial="hidden"
@@ -37,61 +39,66 @@ export function FeaturedCard({ post, className, priority = false }: FeaturedCard
         className,
       )}
     >
-      <Link href={`/blog/${post.slug}`} className="block">
-        <div className="relative aspect-[21/9] min-h-[280px] sm:min-h-[360px]">
-          {post.coverImage && (
-            <Image
-              src={post.coverImage}
-              alt=""
-              fill
-              priority={priority}
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="100vw"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10">
-            <div className="flex items-center gap-2">
-              <Badge className="gradient-brand border-0 text-primary-foreground">Featured</Badge>
-              {post.category && (
-                <Badge variant="secondary" className="bg-white/20 text-white backdrop-blur-sm">
-                  {post.category.name}
-                </Badge>
-              )}
-            </div>
-            <h2 className="mt-4 max-w-3xl text-2xl font-bold tracking-tight text-white sm:text-4xl">
-              {post.title}
-            </h2>
-            {post.subtitle && (
-              <p className="mt-3 max-w-2xl text-base text-white/80 sm:text-lg">{post.subtitle}</p>
+      <div className="relative aspect-[21/9] min-h-[280px] sm:min-h-[360px]">
+        {post.coverImage && (
+          <Image
+            src={post.coverImage}
+            alt=""
+            fill
+            priority={priority}
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="100vw"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+        {/* Stretched post link — sits under interactive children */}
+        <Link
+          href={postHref}
+          className="absolute inset-0 z-0"
+          aria-label={`Read ${post.title}`}
+        />
+
+        <div className="absolute inset-0 z-10 flex flex-col justify-end p-6 sm:p-10 pointer-events-none">
+          <div className="flex items-center gap-2">
+            <Badge className="gradient-brand border-0 text-primary-foreground">Featured</Badge>
+            {post.category && (
+              <Badge variant="secondary" className="bg-white/20 text-white backdrop-blur-sm">
+                {post.category.name}
+              </Badge>
             )}
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
-              <div className="flex items-center gap-2">
-                <Avatar className="size-8 border-2 border-white/30">
-                  <AvatarImage src={post.author.image ?? undefined} />
-                  <AvatarFallback>{initials}</AvatarFallback>
-                </Avatar>
-                <Link
-                  href={authorProfileUrl(post.author)}
-                  onClick={(e) => e.stopPropagation()}
-                  className="font-medium text-white hover:underline"
-                >
-                  {post.author.name}
-                </Link>
-              </div>
-              <span>{formatDate(post.publishedAt!)}</span>
-              <span className="flex items-center gap-1">
-                <Clock className="size-3.5" />
-                {post.readingTime} min read
-              </span>
-              <span className="ml-auto flex items-center gap-1 font-medium text-white opacity-0 transition-opacity group-hover:opacity-100">
-                Read story
-                <ArrowUpRight className="size-4" />
-              </span>
+          </div>
+          <h2 className="mt-4 max-w-3xl text-2xl font-bold tracking-tight text-white sm:text-4xl">
+            {post.title}
+          </h2>
+          {post.subtitle && (
+            <p className="mt-3 max-w-2xl text-base text-white/80 sm:text-lg">{post.subtitle}</p>
+          )}
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
+            <div className="pointer-events-auto flex items-center gap-2">
+              <Avatar className="size-8 border-2 border-white/30">
+                <AvatarImage src={post.author.image ?? undefined} />
+                <AvatarFallback>{initials}</AvatarFallback>
+              </Avatar>
+              <Link
+                href={authorProfileUrl(post.author)}
+                className="font-medium text-white hover:underline"
+              >
+                {post.author.name}
+              </Link>
             </div>
+            <span>{formatDate(post.publishedAt!)}</span>
+            <span className="flex items-center gap-1">
+              <Clock className="size-3.5" />
+              {post.readingTime} min read
+            </span>
+            <span className="ml-auto flex items-center gap-1 font-medium text-white opacity-0 transition-opacity group-hover:opacity-100">
+              Read story
+              <ArrowUpRight className="size-4" />
+            </span>
           </div>
         </div>
-      </Link>
+      </div>
     </motion.article>
   );
 }
