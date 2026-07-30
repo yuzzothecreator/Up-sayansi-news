@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
@@ -9,51 +8,41 @@ type LogoProps = {
   size?: "sm" | "md" | "lg";
 };
 
-const sizeClasses = {
-  sm: "h-9 w-auto",
-  md: "h-12 w-auto",
-  lg: "h-16 w-auto",
-} as const;
-
-const iconSizeClasses = {
-  sm: "size-8",
-  md: "size-10",
-  lg: "size-14",
+const textSizes = {
+  sm: "text-base",
+  md: "text-lg",
+  lg: "text-2xl",
 } as const;
 
 export function Logo({ className, showText = true, size = "md" }: LogoProps) {
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center", className)}
+      className={cn(
+        "group inline-flex items-center rounded-md outline-none",
+        "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        className,
+      )}
       aria-label={`${siteConfig.name} home`}
     >
       {showText ? (
-        <Image
-          src="/logo.png"
-          alt={siteConfig.name}
-          width={547}
-          height={484}
-          priority
+        <span
           className={cn(
-            "object-contain transition-transform group-hover:scale-[1.02]",
-            sizeClasses[size],
+            "font-semibold tracking-tight text-foreground transition-opacity group-hover:opacity-80",
+            textSizes[size],
           )}
-        />
+        >
+          UpSayansi{" "}
+          <span className="text-[#05423a] dark:text-[#5eead4]">News</span>
+        </span>
       ) : (
         <span
           className={cn(
-            "relative overflow-hidden transition-transform group-hover:scale-105",
-            iconSizeClasses[size],
+            "font-bold tracking-tight text-[#05423a] dark:text-[#5eead4]",
+            textSizes[size],
           )}
         >
-          <Image
-            src="/logo.png"
-            alt={siteConfig.name}
-            width={547}
-            height={484}
-            className="absolute left-0 top-1/2 h-[140%] w-auto max-w-none -translate-y-1/2 object-cover object-left"
-          />
+          U
         </span>
       )}
     </Link>
