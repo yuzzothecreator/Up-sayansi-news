@@ -31,7 +31,7 @@ function isConnectionError(error: unknown): boolean {
 }
 
 /**
- * Returns whether Postgres is reachable. Result is cached briefly so pages
+ * Returns whether the database is reachable. Result is cached briefly so pages
  * don't hammer a dead database on every request.
  */
 export async function isDatabaseReady(): Promise<boolean> {

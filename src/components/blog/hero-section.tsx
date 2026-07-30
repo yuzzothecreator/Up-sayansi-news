@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/container";
 import { fadeIn, staggerContainer, staggerItem } from "@/lib/motion";
@@ -23,11 +23,6 @@ export function HeroSection() {
           variants={staggerContainer}
           className="mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={staggerItem} className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/50 px-4 py-1.5 text-sm backdrop-blur-sm">
-            <Sparkles className="size-4 text-primary" />
-            <span className="text-muted-foreground">Premium publishing for curious minds</span>
-          </motion.div>
-
           <motion.h1
             variants={fadeIn}
             className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl"

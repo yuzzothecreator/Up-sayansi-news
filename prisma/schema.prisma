@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 // ─── Enums ───────────────────────────────────────────────────────────────────
@@ -79,17 +78,17 @@ enum AuditAction {
 
 model User {
   id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
+  name          String    @db.VarChar(255)
+  email         String    @unique @db.VarChar(255)
   emailVerified Boolean   @default(false)
-  image         String?
+  image         String?   @db.VarChar(2048)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
   // Pulse RBAC & moderation
   role       Role      @default(READER)
   banned     Boolean   @default(false)
-  banReason  String?
+  banReason  String?   @db.Text
   banExpires DateTime?
   verified   Boolean   @default(false)
 
@@ -119,10 +118,10 @@ model User {
 model Session {
   id             String   @id @default(cuid())
   userId         String
-  token          String   @unique
+  token          String   @unique @db.VarChar(255)
   expiresAt      DateTime
-  ipAddress      String?
-  userAgent      String?
+  ipAddress      String?  @db.VarChar(64)
+  userAgent      String?  @db.Text
   impersonatedBy String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -137,15 +136,15 @@ model Session {
 model Account {
   id                    String    @id @default(cuid())
   userId                String
-  accountId             String
-  providerId            String
-  accessToken           String?
-  refreshToken          String?
+  accountId             String    @db.VarChar(255)
+  providerId            String    @db.VarChar(64)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
-  scope                 String?
-  idToken               String?
-  password              String?
+  scope                 String?   @db.Text
+  idToken               String?   @db.Text
+  password              String?   @db.VarChar(255)
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
@@ -220,12 +219,12 @@ model Tag {
 
 model Post {
   id             String     @id @default(cuid())
-  title          String
-  slug           String     @unique
-  subtitle       String?
+  title          String     @db.VarChar(255)
+  slug           String     @unique @db.VarChar(200)
+  subtitle       String?    @db.VarChar(500)
   content        Json
-  contentHtml    String?    @db.Text
-  coverImage     String?
+  contentHtml    String?    @db.LongText
+  coverImage     String?    @db.VarChar(2048)
   status         PostStatus @default(DRAFT)
   publishedAt    DateTime?
   scheduledAt    DateTime?
@@ -235,7 +234,7 @@ model Post {
   commentsCount  Int        @default(0)
   featured       Boolean    @default(false)
   pinned         Boolean    @default(false)
-  seoTitle       String?
+  seoTitle       String?    @db.VarChar(255)
   seoDescription String?    @db.Text
   authorId       String
   categoryId     String?

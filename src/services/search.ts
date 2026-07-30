@@ -32,12 +32,12 @@ export async function globalSearch(
     ...(query
       ? {
           OR: [
-            { title: { contains: query, mode: "insensitive" } },
-            { subtitle: { contains: query, mode: "insensitive" } },
-            { contentHtml: { contains: query, mode: "insensitive" } },
-            { author: { name: { contains: query, mode: "insensitive" } } },
-            { category: { name: { contains: query, mode: "insensitive" } } },
-            { tags: { some: { tag: { name: { contains: query, mode: "insensitive" } } } } },
+            { title: { contains: query } },
+            { subtitle: { contains: query } },
+            { contentHtml: { contains: query } },
+            { author: { name: { contains: query } } },
+            { category: { name: { contains: query } } },
+            { tags: { some: { tag: { name: { contains: query } } } } },
           ],
         }
       : {}),
@@ -70,8 +70,8 @@ export async function globalSearch(
       ? prisma.user.findMany({
           where: {
             OR: [
-              { name: { contains: query, mode: "insensitive" } },
-              { profile: { bio: { contains: query, mode: "insensitive" } } },
+              { name: { contains: query } },
+              { profile: { bio: { contains: query } } },
             ],
             role: { in: ["AUTHOR", "EDITOR", "ADMINISTRATOR"] },
           },
@@ -81,14 +81,14 @@ export async function globalSearch(
       : Promise.resolve([]),
     query
       ? prisma.category.findMany({
-          where: { name: { contains: query, mode: "insensitive" } },
+          where: { name: { contains: query } },
           select: { id: true, name: true, slug: true, color: true },
           take: 5,
         })
       : Promise.resolve([]),
     query
       ? prisma.tag.findMany({
-          where: { name: { contains: query, mode: "insensitive" } },
+          where: { name: { contains: query } },
           select: { id: true, name: true, slug: true },
           take: 5,
         })
@@ -112,9 +112,9 @@ export async function searchPostsOnly(query: string, page = 1, limit = 12) {
   const where: Prisma.PostWhereInput = {
     status: "PUBLISHED",
     OR: [
-      { title: { contains: query, mode: "insensitive" } },
-      { subtitle: { contains: query, mode: "insensitive" } },
-      { contentHtml: { contains: query, mode: "insensitive" } },
+      { title: { contains: query } },
+      { subtitle: { contains: query } },
+      { contentHtml: { contains: query } },
     ],
   };
 

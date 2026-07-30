@@ -1,6 +1,6 @@
 # UpSayansi News
 
-**UpSayansi News** is a modern publishing platform for thoughtful writers and curious readers. It combines a rich TipTap editor, role-based access control, social engagement features, and an admin console — built on Next.js 16, PostgreSQL, Better Auth, and Supabase Storage.
+**UpSayansi News** is a modern publishing platform for thoughtful writers and curious readers. It combines a rich TipTap editor, role-based access control, social engagement features, and an admin console — built on Next.js 16, TiDB Cloud, Better Auth, and Supabase Storage.
 
 ---
 
@@ -49,7 +49,7 @@ UpSayansi News is a full-stack blog and publishing platform inspired by Medium-s
 | Framework | [Next.js 16](https://nextjs.org) (App Router) |
 | Language | TypeScript |
 | UI | React 19, Tailwind CSS 4, Radix UI, Framer Motion |
-| Database | PostgreSQL via [Prisma](https://www.prisma.io) |
+| Database | [TiDB Cloud](https://tidbcloud.com/) (MySQL-compatible) via [Prisma](https://www.prisma.io) |
 | Auth | [Better Auth](https://www.better-auth.com) |
 | Storage | [Supabase Storage](https://supabase.com/docs/guides/storage) |
 | Email | [Resend](https://resend.com) |
@@ -63,7 +63,7 @@ UpSayansi News is a full-stack blog and publishing platform inspired by Medium-s
 
 - **Node.js** 20+
 - **npm** (or pnpm/yarn)
-- **PostgreSQL** 14+ (local, Docker, or [Supabase](https://supabase.com))
+- A [TiDB Cloud](https://tidbcloud.com/) cluster (free Starter tier works)
 - Optional: Supabase project (storage), Resend account (email), Google/GitHub OAuth apps
 
 ---
@@ -90,12 +90,11 @@ Required variables:
 
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string (pooled, for app runtime) |
-| `DIRECT_URL` | Direct PostgreSQL connection (migrations / `db push`) |
+| `DATABASE_URL` | TiDB Cloud MySQL connection string (`mysql://…:4000/…?sslaccept=strict`) |
 | `BETTER_AUTH_SECRET` | Secret key (min 32 chars). Generate: `openssl rand -base64 32` |
 | `BETTER_AUTH_URL` | App base URL for auth callbacks (e.g. `http://localhost:3000`) |
 | `NEXT_PUBLIC_APP_URL` | Public app URL (same as above in dev) |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL (storage) |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key (client-side) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server uploads) |
 | `RESEND_API_KEY` | Resend API key for transactional email |
@@ -108,7 +107,18 @@ Optional OAuth variables (leave blank to disable):
 | `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth credentials |
 | `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | GitHub OAuth credentials |
 
-### 3. Supabase setup
+### 3. TiDB Cloud setup
+
+1. Create an account and cluster at [tidbcloud.com](https://tidbcloud.com/).
+2. Open the cluster → **Connect** → choose **Prisma** (or MySQL) and copy the connection string.
+3. Set `DATABASE_URL` in `.env`, for example:
+   ```
+   DATABASE_URL="mysql://<user>:<password>@<host>:4000/upsayansi?sslaccept=strict"
+   ```
+4. Create the database if needed (from the TiDB SQL editor): `CREATE DATABASE IF NOT EXISTS upsayansi;`
+5. Set `USE_MOCK_DATA=false` once the cluster is reachable.
+
+### 4. Supabase setup (storage)
 
 1. Create a project at [supabase.com](https://supabase.com).
 2. Copy **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
@@ -120,11 +130,7 @@ Optional OAuth variables (leave blank to disable):
    - `post-images`
    - `media`
 
-For the database, you can either:
-- Use Supabase PostgreSQL (recommended): copy the **Connection pooling** URI to `DATABASE_URL` and the **Direct** URI to `DIRECT_URL`
-- Use a separate local PostgreSQL instance
-
-### 4. Better Auth setup
+### 5. Better Auth setup
 
 1. Set `BETTER_AUTH_SECRET` to a strong random string (32+ characters).
 2. Set `BETTER_AUTH_URL` and `NEXT_PUBLIC_APP_URL` to your app origin.
@@ -132,7 +138,7 @@ For the database, you can either:
 
 Better Auth exposes routes at `/api/auth/*`. Session cookies are managed automatically via the `nextCookies` plugin.
 
-### 5. Google OAuth (optional)
+### 6. Google OAuth (optional)
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
 2. Create an OAuth 2.0 Client ID (Web application).
@@ -141,7 +147,7 @@ Better Auth exposes routes at `/api/auth/*`. Session cookies are managed automat
    - Prod: `https://your-domain.com/api/auth/callback/google`
 4. Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
 
-### 6. GitHub OAuth (optional)
+### 7. GitHub OAuth (optional)
 
 1. Go to [GitHub Developer Settings](https://github.com/settings/developers) → OAuth Apps.
 2. Set callback URL:
@@ -151,32 +157,15 @@ Better Auth exposes routes at `/api/auth/*`. Session cookies are managed automat
 
 OAuth providers are registered automatically when both client ID and secret are present.
 
-### 7. Database push and seed
-
-**Option A — Prisma db push (recommended for local dev)**
+### 8. Database push and seed
 
 ```bash
 npm run db:push
 npm run db:seed
 ```
 
-**Option B — SQL migration**
-
-An initial migration is included at `prisma/migrations/0_init/migration.sql`. Apply it with:
-
-```bash
-npx prisma migrate deploy
-npm run db:seed
-```
-
-Or run the SQL directly against your PostgreSQL database, then:
-
-```bash
-npm run db:generate
-npm run db:seed
-```
-
-### 8. Run the dev server
+Prisma uses the MySQL provider against TiDB. Runtime queries go through `@tidbcloud/prisma-adapter`; `db:push` / migrate still use TCP.
+### 9. Run the dev server
 
 ```bash
 npm run dev
@@ -264,7 +253,7 @@ blog-sport/
 1. Push the repository to GitHub.
 2. Import the project in [Vercel](https://vercel.com).
 3. Set all environment variables from `.env.example` in the Vercel dashboard.
-4. Use Supabase **pooled** connection string for `DATABASE_URL` and **direct** for `DIRECT_URL`.
+4. Set `DATABASE_URL` to your TiDB Cloud connection string (`mysql://…?sslaccept=strict`).
 5. Set production URLs:
    - `NEXT_PUBLIC_APP_URL=https://your-domain.com`
    - `BETTER_AUTH_URL=https://your-domain.com`
@@ -272,7 +261,7 @@ blog-sport/
 7. Deploy. Vercel detects Next.js automatically; `vercel.json` adds service worker headers.
 
 **Post-deploy checklist:**
-- Run `npx prisma migrate deploy` (or `db push`) against production DB
+- Run `npm run db:push` (or `npx prisma migrate deploy`) against the TiDB database
 - Run seed only on staging, not production
 - Verify Resend domain and `EMAIL_FROM` sender
 - Add PWA icons at `public/icon-192.png` and `public/icon-512.png`
@@ -287,7 +276,7 @@ blog-sport/
 Browser → Next.js Middleware (session cookie check for /dashboard, /admin)
        → App Router (RSC + Server Actions)
        → Services layer (Prisma queries)
-       → PostgreSQL
+       → TiDB Cloud (MySQL)
 ```
 
 ### Authentication

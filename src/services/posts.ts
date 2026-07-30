@@ -68,9 +68,9 @@ function buildPostWhere(filters: PostQueryInput, viewerId?: string): Prisma.Post
 
   if (filters.q) {
     where.OR = [
-      { title: { contains: filters.q, mode: "insensitive" } },
-      { subtitle: { contains: filters.q, mode: "insensitive" } },
-      { contentHtml: { contains: filters.q, mode: "insensitive" } },
+      { title: { contains: filters.q } },
+      { subtitle: { contains: filters.q } },
+      { contentHtml: { contains: filters.q } },
     ];
   }
 

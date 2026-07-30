@@ -37,6 +37,8 @@
     "@radix-ui/react-toast": "^1.2.19",
     "@radix-ui/react-tooltip": "^1.2.12",
     "@supabase/supabase-js": "^2.110.7",
+    "@tidbcloud/prisma-adapter": "^6.17.0",
+    "@tidbcloud/serverless": "^0.3.0",
     "@tiptap/extension-code-block-lowlight": "^3.28.0",
     "@tiptap/extension-image": "^3.28.0",
     "@tiptap/extension-link": "^3.28.0",
