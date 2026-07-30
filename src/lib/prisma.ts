@@ -5,21 +5,27 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-const useMockData = process.env.USE_MOCK_DATA === "true";
+const log: Array<"error" | "warn"> =
+  process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"];
 
-const log: Array<"error" | "warn"> = useMockData
-  ? ["error"]
-  : process.env.NODE_ENV === "development"
-    ? ["error", "warn"]
-    : ["error"];
+/**
+ * TiDB serverless adapter expects:
+ *   mysql://user:pass@host/database
+ * (no port / ssl query params — those are for Prisma CLI TCP).
+ */
+function toTiDBServerlessUrl(databaseUrl: string) {
+  const parsed = new URL(databaseUrl);
+  const database = parsed.pathname.replace(/^\//, "") || "upsayansi";
+  const user = decodeURIComponent(parsed.username);
+  const password = decodeURIComponent(parsed.password);
+  return `mysql://${user}:${password}@${parsed.hostname}/${database}`;
+}
 
 function createPrismaClient() {
   const url = process.env.DATABASE_URL;
 
-  // TiDB Cloud MySQL URL — use the serverless HTTP adapter for Prisma Client.
-  // Prisma CLI (db push / migrate) still uses TCP against the same DATABASE_URL.
   if (url?.startsWith("mysql://")) {
-    const adapter = new PrismaTiDBCloud({ url });
+    const adapter = new PrismaTiDBCloud({ url: toTiDBServerlessUrl(url) });
     return new PrismaClient({ adapter, log });
   }
 

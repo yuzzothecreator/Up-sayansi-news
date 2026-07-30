@@ -31,6 +31,12 @@ function getSocialProviders() {
   return providers;
 }
 
+const emailConfigured = Boolean(
+  process.env.RESEND_API_KEY &&
+    !process.env.RESEND_API_KEY.includes("your_api_key") &&
+    process.env.RESEND_API_KEY.startsWith("re_"),
+);
+
 export const auth = betterAuth({
   appName: "UpSayansi News",
   secret: process.env.BETTER_AUTH_SECRET,
@@ -40,22 +46,26 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true,
+    // Without Resend configured, allow sign-in immediately so local/dev auth works.
+    requireEmailVerification: emailConfigured,
     minPasswordLength: 8,
     maxPasswordLength: 128,
-    autoSignIn: false,
+    autoSignIn: !emailConfigured,
     sendResetPassword: async ({ user, token }) => {
+      if (!emailConfigured) return;
       await sendPasswordResetEmail(user.email, token);
     },
   },
   emailVerification: {
-    sendOnSignUp: true,
-    sendOnSignIn: true,
+    sendOnSignUp: emailConfigured,
+    sendOnSignIn: emailConfigured,
     autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, token }) => {
+      if (!emailConfigured) return;
       await sendVerificationEmail(user.email, token);
     },
     afterEmailVerification: async (user) => {
+      if (!emailConfigured) return;
       await sendWelcomeEmail(user.email, user.name);
     },
   },

@@ -42,8 +42,9 @@ export function RegisterForm() {
       if (error) {
         toast.error(error.message ?? "Registration failed");
       } else {
-        toast.success("Check your email to verify your account");
-        router.push("/verify-email");
+        toast.success("Account created — welcome!");
+        router.push("/");
+        router.refresh();
       }
     });
   }
