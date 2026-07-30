@@ -32,7 +32,7 @@ export function FaqSection({ items }: FaqSectionProps) {
         >
           <SectionHeading
             title="Frequently asked questions"
-            description="Everything you need to know about Pulse"
+            description="Everything you need to know about UpSayansi News"
             align="center"
             className="mb-12"
           />

@@ -1,12 +1,12 @@
-# Pulse
+# UpSayansi News
 
-**Pulse** is a modern publishing platform for thoughtful writers and curious readers. It combines a rich TipTap editor, role-based access control, social engagement features, and an admin console — built on Next.js 16, PostgreSQL, Better Auth, and Supabase Storage.
+**UpSayansi News** is a modern publishing platform for thoughtful writers and curious readers. It combines a rich TipTap editor, role-based access control, social engagement features, and an admin console — built on Next.js 16, PostgreSQL, Better Auth, and Supabase Storage.
 
 ---
 
 ## Overview
 
-Pulse is a full-stack blog and publishing platform inspired by Medium-style reading experiences. Authors draft and publish stories; editors review and curate content; administrators manage users, ads, and platform settings. Readers can follow authors, bookmark posts, comment, and subscribe to the newsletter.
+UpSayansi News is a full-stack blog and publishing platform inspired by Medium-style reading experiences. Authors draft and publish stories; editors review and curate content; administrators manage users, ads, and platform settings. Readers can follow authors, bookmark posts, comment, and subscribe to the newsletter.
 
 ---
 
@@ -99,7 +99,7 @@ Required variables:
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key (client-side) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server uploads) |
 | `RESEND_API_KEY` | Resend API key for transactional email |
-| `EMAIL_FROM` | Sender address, e.g. `Pulse <hello@yourdomain.com>` |
+| `EMAIL_FROM` | Sender address, e.g. `UpSayansi News <hello@yourdomain.com>` |
 
 Optional OAuth variables (leave blank to disable):
 
@@ -305,7 +305,7 @@ Browser → Next.js Middleware (session cookie check for /dashboard, /admin)
 
 ### Data layer
 
-- **Prisma** is the ORM; schema includes Better Auth tables plus Pulse domain models.
+- **Prisma** is the ORM; schema includes Better Auth tables plus UpSayansi News domain models.
 - **Services** in `src/services/` encapsulate database operations.
 - JSON columns store TipTap document content; `contentHtml` stores sanitized HTML for rendering.
 

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: AuthorPageProps) {
   if (!author) return createMetadata({ title: "Author not found", noIndex: true });
   return createMetadata({
     title: author.name,
-    description: author.profile?.bio ?? `Stories by ${author.name} on Pulse`,
+    description: author.profile?.bio ?? `Stories by ${author.name} on UpSayansi News`,
     path: `/authors/${username}`,
     image: author.image ?? undefined,
   });

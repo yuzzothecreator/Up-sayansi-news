@@ -16,7 +16,7 @@ export function RelatedPosts({ posts, className }: RelatedPostsProps) {
   return (
     <section className={cn("space-y-8", className)}>
       <div className="flex items-end justify-between">
-        <SectionHeading title="Related stories" description="More from Pulse" />
+        <SectionHeading title="Related stories" description="More from UpSayansi News" />
         <Link
           href="/blog"
           className="hidden items-center gap-1 text-sm font-medium text-primary hover:underline sm:flex"

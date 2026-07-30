@@ -7,7 +7,7 @@ import { Mail, MapPin, MessageSquare } from "lucide-react";
 export const metadata = createMetadata({
   title: "Contact",
   path: "/contact",
-  description: "Get in touch with the Pulse team",
+  description: "Get in touch with the UpSayansi News team",
 });
 
 export default function ContactPage() {

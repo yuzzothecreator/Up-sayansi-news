@@ -53,7 +53,7 @@ export function LoginForm() {
   return (
     <AuthShell
       title="Welcome back"
-      description="Sign in to your Pulse account"
+      description="Sign in to your UpSayansi News account"
       footer={
         <>
           Don&apos;t have an account?{" "}

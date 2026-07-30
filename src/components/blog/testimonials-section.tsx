@@ -24,7 +24,7 @@ export function TestimonialsSection({ items }: TestimonialsSectionProps) {
       <Container>
         <SectionHeading
           title="Loved by readers & writers"
-          description="Join thousands who've made Pulse their home for great stories"
+          description="Join thousands who've made UpSayansi News their home for great stories"
           align="center"
           className="mb-12"
         />

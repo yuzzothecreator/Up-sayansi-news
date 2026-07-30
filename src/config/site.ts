@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Pulse",
+  name: "UpSayansi News",
   tagline: "Stories that move the world",
   description:
-    "Pulse is a premium publishing platform for thoughtful writers and curious readers. Discover stories on sports, culture, technology, and beyond.",
+    "UpSayansi News is a premium publishing platform for thoughtful writers and curious readers. Discover stories on sports, culture, technology, and beyond.",
   url: process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   ogImage: "/og-default.png",
   links: {
@@ -10,7 +10,7 @@ export const siteConfig = {
     github: "https://github.com/pulse",
   },
   creator: {
-    name: "Pulse",
+    name: "UpSayansi News",
     url: "https://pulse.app",
   },
   keywords: [

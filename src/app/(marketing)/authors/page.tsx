@@ -11,7 +11,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Authors",
   path: "/authors",
-  description: "Meet the writers behind Pulse",
+  description: "Meet the writers behind UpSayansi News",
 });
 
 type AuthorsPageProps = {
@@ -31,7 +31,7 @@ export default async function AuthorsPage({ searchParams }: AuthorsPageProps) {
     <Container className="py-16">
       <SectionHeading
         title="Our authors"
-        description="Discover the voices shaping stories on Pulse"
+        description="Discover the voices shaping stories on UpSayansi News"
         className="mb-12"
       />
       <AuthorsGrid authors={result.data} />

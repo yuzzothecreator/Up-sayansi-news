@@ -7,7 +7,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Search",
   path: "/search",
-  description: "Search stories on Pulse",
+  description: "Search stories on UpSayansi News",
 });
 
 type SearchPageProps = {

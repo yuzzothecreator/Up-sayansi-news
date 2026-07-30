@@ -279,7 +279,7 @@ export const mockPostDetail: PostWithRelations = {
 
 export const mockTestimonials = [
   {
-    quote: "Pulse transformed how I discover stories. The curation is impeccable.",
+    quote: "UpSayansi News transformed how I discover stories. The curation is impeccable.",
     author: "Sarah Kim",
     role: "Product Designer",
     avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=sarah",
@@ -300,15 +300,15 @@ export const mockTestimonials = [
 
 export const mockFaqs = [
   {
-    question: "What is Pulse?",
-    answer: "Pulse is a premium publishing platform for thoughtful writers and curious readers. We focus on quality storytelling across sports, culture, technology, and beyond.",
+    question: "What is UpSayansi News?",
+    answer: "UpSayansi News is a premium publishing platform for thoughtful writers and curious readers. We focus on quality storytelling across sports, culture, technology, and beyond.",
   },
   {
-    question: "Is Pulse free to read?",
-    answer: "Yes! All published stories on Pulse are free to read. We believe great writing should be accessible to everyone.",
+    question: "Is UpSayansi News free to read?",
+    answer: "Yes! All published stories on UpSayansi News are free to read. We believe great writing should be accessible to everyone.",
   },
   {
-    question: "How do I become a writer on Pulse?",
+    question: "How do I become a writer on UpSayansi News?",
     answer: "Create an account and apply to become an author. Our editorial team reviews applications and welcomes diverse voices.",
   },
   {

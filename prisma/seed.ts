@@ -74,7 +74,7 @@ async function createUserWithCredentials(options: {
 }
 
 async function main() {
-  console.log("🌱 Seeding Pulse database…");
+  console.log("🌱 Seeding UpSayansi News database…");
 
   await prisma.auditLog.deleteMany();
   await prisma.notification.deleteMany();
@@ -101,7 +101,7 @@ async function main() {
     name: "Alex Morgan",
     email: "admin@pulse.app",
     role: "ADMINISTRATOR",
-    bio: "Platform administrator keeping Pulse running smoothly.",
+    bio: "Platform administrator keeping UpSayansi News running smoothly.",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
   });
 
@@ -109,7 +109,7 @@ async function main() {
     name: "Jordan Lee",
     email: "editor@pulse.app",
     role: "EDITOR",
-    bio: "Senior editor curating the best stories on Pulse.",
+    bio: "Senior editor curating the best stories on UpSayansi News.",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=editor",
   });
 
@@ -150,7 +150,7 @@ async function main() {
       email: "riley@pulse.app",
       role: "READER",
       verified: false,
-      bio: "Pulse community member since day one.",
+      bio: "UpSayansi News community member since day one.",
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=riley",
     }),
   ]);
@@ -187,7 +187,7 @@ async function main() {
       data: {
         name: "Opinion",
         slug: "opinion",
-        description: "Perspectives and commentary from Pulse writers.",
+        description: "Perspectives and commentary from UpSayansi News writers.",
         color: "#dc2626",
         icon: "MessageSquare",
       },
@@ -290,7 +290,7 @@ async function main() {
       publishedAt: daysAgo(10),
       paragraphs: [
         "Youth sports in America is a $30B industry built on aspiration—and increasingly, exclusion.",
-        "Pulse spoke with founders building sliding-scale leagues and shared equipment pools in underserved communities.",
+        "UpSayansi News spoke with founders building sliding-scale leagues and shared equipment pools in underserved communities.",
       ],
     },
     {
@@ -425,7 +425,7 @@ async function main() {
   const collection = await prisma.bookmarkCollection.create({
     data: {
       name: "Must Reads",
-      description: "My favorite Pulse stories this month.",
+      description: "My favorite UpSayansi News stories this month.",
       isPublic: true,
       userId: readers[0].id,
       items: {
@@ -513,7 +513,7 @@ async function main() {
   await Promise.all([
     prisma.advertisement.create({
       data: {
-        title: "Pulse Premium",
+        title: "UpSayansi News Premium",
         linkUrl: "https://pulse.app/premium",
         placement: "SIDEBAR",
         active: true,

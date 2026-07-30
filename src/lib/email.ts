@@ -68,7 +68,7 @@ export async function sendWelcomeEmail(to: string, name: string) {
         <h1>Welcome, ${name}!</h1>
         <p>Thanks for joining ${siteConfig.name}. Start exploring stories or write your first post.</p>
         <a href="${siteConfig.url}" style="display: inline-block; padding: 12px 24px; background: #3b82f6; color: white; text-decoration: none; border-radius: 8px;">
-          Explore Pulse
+          Explore UpSayansi News
         </a>
       </div>
     `,

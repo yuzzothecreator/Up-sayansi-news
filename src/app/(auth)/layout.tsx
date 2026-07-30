@@ -11,7 +11,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         {children}
       </Suspense>
       <Link href="/" className="mt-8 text-sm text-muted-foreground hover:text-foreground">
-        ← Back to Pulse
+        ← Back to UpSayansi News
       </Link>
     </div>
   );

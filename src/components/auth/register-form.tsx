@@ -51,7 +51,7 @@ export function RegisterForm() {
   return (
     <AuthShell
       title="Create your account"
-      description="Join Pulse and start reading great stories"
+      description="Join UpSayansi News and start reading great stories"
       footer={
         <>
           Already have an account?{" "}

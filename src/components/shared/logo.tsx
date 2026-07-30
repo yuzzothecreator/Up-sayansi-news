@@ -27,7 +27,7 @@ export function Logo({ className, showText = true, size = "md" }: LogoProps) {
           sizeClasses[size],
         )}
       >
-        P
+        U
       </span>
       {showText && (
         <span className="text-lg font-semibold tracking-tight">{siteConfig.name}</span>

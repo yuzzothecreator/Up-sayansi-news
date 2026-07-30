@@ -9,7 +9,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Categories",
   path: "/categories",
-  description: "Browse stories by category on Pulse",
+  description: "Browse stories by category on UpSayansi News",
 });
 
 export default async function CategoriesPage() {

@@ -12,7 +12,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Blog",
   path: "/blog",
-  description: "All stories on Pulse",
+  description: "All stories on UpSayansi News",
 });
 
 type BlogPageProps = {
@@ -39,7 +39,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   return (
     <Container className="py-16">
       <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <SectionHeading title="All stories" description="Browse the full Pulse archive" />
+        <SectionHeading title="All stories" description="Browse the full UpSayansi News archive" />
         <div className="flex gap-2">
           {(["latest", "popular", "trending"] as const).map((s) => (
             <Link

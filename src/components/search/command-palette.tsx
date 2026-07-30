@@ -63,7 +63,7 @@ export function CommandPalette({
       >
         <DialogHeader className="sr-only">
           <DialogTitle>Search</DialogTitle>
-          <DialogDescription>Search across Pulse content</DialogDescription>
+          <DialogDescription>Search across UpSayansi News content</DialogDescription>
         </DialogHeader>
 
         <Command

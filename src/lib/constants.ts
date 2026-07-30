@@ -1,4 +1,4 @@
-export const APP_NAME = "Pulse";
+export const APP_NAME = "UpSayansi News";
 
 export const POST_STATUSES = {
   DRAFT: "DRAFT",
@@ -48,10 +48,10 @@ export const CACHE_TAGS = {
 export const READING_WPM = 200;
 
 export const SEO_DEFAULTS = {
-  titleTemplate: "%s · Pulse",
-  defaultTitle: "Pulse — Stories that move the world",
+  titleTemplate: "%s · UpSayansi News",
+  defaultTitle: "UpSayansi News — Stories that move the world",
   defaultDescription:
-    "Discover thoughtful stories on sports, culture, technology, and more on Pulse.",
+    "Discover thoughtful stories on sports, culture, technology, and more on UpSayansi News.",
 } as const;
 
 export const EDITOR_PLACEHOLDER = "Tell your story…";

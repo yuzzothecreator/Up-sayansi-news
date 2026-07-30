@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
     name: siteConfig.name,
-    short_name: siteConfig.name,
+    short_name: "UpSayansi",
     description: siteConfig.description,
     start_url: "/",
     scope: "/",
