@@ -55,11 +55,10 @@ export const authNav: NavItem[] = [
   },
   {
     title: "Write",
-    href: "/write",
+    href: "/dashboard/posts/new",
     icon: PenLine,
     description: "Create a new story",
     requiresAuth: true,
-    roles: ["AUTHOR", "EDITOR", "ADMINISTRATOR"],
   },
 ];
 

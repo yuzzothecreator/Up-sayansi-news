@@ -39,7 +39,6 @@ const dashboardItems: SidebarItem[] = [
     title: "Write",
     href: "/dashboard/posts/new",
     icon: PenLine,
-    roles: ["AUTHOR", "EDITOR", "ADMINISTRATOR"],
   },
 ];
 

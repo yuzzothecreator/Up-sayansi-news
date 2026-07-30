@@ -309,7 +309,7 @@ export const mockFaqs = [
   },
   {
     question: "How do I become a writer on UpSayansi News?",
-    answer: "Create an account and apply to become an author. Our editorial team reviews applications and welcomes diverse voices.",
+    answer: "Create an account and start writing right away. Every signed-in member can draft and publish stories from the dashboard.",
   },
   {
     question: "Can I save articles for later?",

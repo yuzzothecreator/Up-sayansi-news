@@ -50,7 +50,9 @@ export function Navbar() {
             <div className="flex items-center gap-6">
               <Logo />
               <nav className="hidden items-center gap-1 md:flex">
-                {[...mainNav, ...authNav].map((item) => {
+                {[...mainNav, ...authNav]
+                  .filter((item) => !item.requiresAuth || Boolean(user))
+                  .map((item) => {
                   const isActive =
                     pathname === item.href ||
                     (item.href !== "/" && pathname.startsWith(item.href));

@@ -75,7 +75,7 @@ export const auth = betterAuth({
       role: {
         type: "string",
         required: false,
-        defaultValue: "READER",
+        defaultValue: "AUTHOR",
         input: false,
       },
       banned: {

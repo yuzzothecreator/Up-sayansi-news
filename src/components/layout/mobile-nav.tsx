@@ -37,7 +37,9 @@ export function MobileNav({ trigger }: MobileNavProps) {
         </SheetHeader>
 
         <nav className="mt-8 flex flex-col gap-1">
-          {[...mainNav, ...authNav].map((item) => {
+          {[...mainNav, ...authNav]
+            .filter((item) => !item.requiresAuth || Boolean(user))
+            .map((item) => {
             const Icon = item.icon;
             const isActive =
               pathname === item.href ||

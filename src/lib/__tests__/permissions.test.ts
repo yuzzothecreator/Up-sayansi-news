@@ -50,6 +50,21 @@ describe("can", () => {
     expect(can(author, "post:publish")).toBe(false);
     expect(can(editor, "post:publish")).toBe(true);
   });
+
+  it("allows readers to write their own posts", () => {
+    const reader: SessionUser = {
+      id: "reader-1",
+      name: "Reader",
+      email: "reader@pulse.app",
+      emailVerified: true,
+      role: "READER",
+      banned: false,
+      verified: false,
+    };
+    expect(can(reader, "post:create")).toBe(true);
+    expect(can(reader, "post:update:own")).toBe(true);
+    expect(can(reader, "post:publish")).toBe(false);
+  });
 });
 
 describe("canEditPost", () => {

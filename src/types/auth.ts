@@ -63,6 +63,9 @@ export type Permission = keyof typeof PERMISSIONS;
 export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   READER: [
     "post:read",
+    "post:create",
+    "post:update:own",
+    "post:delete:own",
     "comment:create",
     "comment:update:own",
     "comment:delete:own",

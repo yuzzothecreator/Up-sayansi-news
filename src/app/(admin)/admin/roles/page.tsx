@@ -27,7 +27,7 @@ export default function AdminRolesPage() {
                 {role === "ADMINISTRATOR" && "Full platform access"}
                 {role === "EDITOR" && "Content moderation and publishing"}
                 {role === "AUTHOR" && "Create and manage own posts"}
-                {role === "READER" && "Read, comment, and engage"}
+                {role === "READER" && "Read, comment, engage, and write own posts"}
               </CardDescription>
             </CardHeader>
             <CardContent>

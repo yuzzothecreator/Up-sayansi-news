@@ -40,9 +40,9 @@ export default function AboutPage() {
         </ul>
         <h2>Join us</h2>
         <p>
-          Whether you&apos;re a reader looking for your next great story or a writer ready to share your
-          voice, {siteConfig.name} is your platform. Start reading today, or apply to become a writer
-          and join our growing community.
+          Whether you&apos;re here to discover stories or share your own voice,{" "}
+          {siteConfig.name} is your platform. Create an account and start writing
+          today — every member can publish.
         </p>
       </div>
     </Container>
