@@ -10,7 +10,7 @@ export const mockAuthors: UserProfile[] = [
     name: "Maya Chen",
     email: "maya@pulse.app",
     emailVerified: true,
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=maya",
+    image: "https://api.dicebear.com/7.x/avataaars/png?seed=maya",
     createdAt: daysAgo(180),
     updatedAt: now,
     role: "AUTHOR",
@@ -37,7 +37,7 @@ export const mockAuthors: UserProfile[] = [
     name: "Marcus Rivera",
     email: "marcus@pulse.app",
     emailVerified: true,
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=marcus",
+    image: "https://api.dicebear.com/7.x/avataaars/png?seed=marcus",
     createdAt: daysAgo(200),
     updatedAt: now,
     role: "AUTHOR",
@@ -64,7 +64,7 @@ export const mockAuthors: UserProfile[] = [
     name: "Sam Okonkwo",
     email: "sam@pulse.app",
     emailVerified: true,
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=sam",
+    image: "https://api.dicebear.com/7.x/avataaars/png?seed=sam",
     createdAt: daysAgo(150),
     updatedAt: now,
     role: "AUTHOR",
@@ -145,7 +145,7 @@ export const mockTags: Array<Tag & { _count: { posts: number } }> = [
 function mockPostCard(overrides: Partial<PostCard> & Pick<PostCard, "id" | "title" | "slug">): PostCard {
   return {
     subtitle: "A compelling story worth your time.",
-    coverImage: "https://images.unsplash.com/photo-1461896836934-ffe607ba6851?w=800&q=80",
+    coverImage: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
     publishedAt: daysAgo(3),
     readingTime: 6,
     viewsCount: 4200,
@@ -282,19 +282,19 @@ export const mockTestimonials = [
     quote: "Pulse transformed how I discover stories. The curation is impeccable.",
     author: "Sarah Kim",
     role: "Product Designer",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah",
+    avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=sarah",
   },
   {
     quote: "Finally, a platform that treats writers and readers with equal respect.",
     author: "David Torres",
     role: "Independent Author",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=david",
+    avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=david",
   },
   {
     quote: "The reading experience is unmatched. Clean, fast, and beautifully designed.",
     author: "Emma Walsh",
     role: "Editor at TechReview",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=emma",
+    avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=emma",
   },
 ];
 

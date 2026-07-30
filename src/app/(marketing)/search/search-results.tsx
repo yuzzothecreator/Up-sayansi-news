@@ -17,12 +17,21 @@ type SearchResultsProps = {
 export async function SearchResults({ query, page, sort }: SearchResultsProps) {
   if (!query) {
     return (
-      <div className="mx-auto max-w-md space-y-6 text-center">
-        <Search className="mx-auto size-12 text-muted-foreground/40" />
+      <div className="mx-auto max-w-xl space-y-6 text-center">
+        <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-muted">
+          <Search className="size-6 text-muted-foreground" />
+        </div>
         <p className="text-muted-foreground">Enter a search term to find stories</p>
         <form action="/search" method="GET" className="flex gap-2">
-          <Input name="q" placeholder="Search stories…" className="rounded-xl" required />
-          <Button type="submit" className="rounded-xl">Search</Button>
+          <Input
+            name="q"
+            placeholder="Search stories…"
+            className="h-11 rounded-xl"
+            required
+          />
+          <Button type="submit" className="h-11 shrink-0 rounded-xl px-5">
+            Search
+          </Button>
         </form>
       </div>
     );
@@ -35,10 +44,17 @@ export async function SearchResults({ query, page, sort }: SearchResultsProps) {
 
   return (
     <div className="space-y-8">
-      <form action="/search" method="GET" className="flex gap-2">
-        <Input name="q" defaultValue={query} placeholder="Search stories…" className="rounded-xl" />
+      <form action="/search" method="GET" className="flex max-w-2xl gap-2">
+        <Input
+          name="q"
+          defaultValue={query}
+          placeholder="Search stories…"
+          className="h-11 rounded-xl"
+        />
         <input type="hidden" name="sort" value={sort} />
-        <Button type="submit" className="rounded-xl">Search</Button>
+        <Button type="submit" className="h-11 shrink-0 rounded-xl px-5">
+          Search
+        </Button>
       </form>
 
       {result.data.length > 0 ? (

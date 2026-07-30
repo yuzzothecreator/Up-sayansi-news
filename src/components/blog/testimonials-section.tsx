@@ -50,6 +50,7 @@ export function TestimonialsSection({ items }: TestimonialsSectionProps) {
                   width={40}
                   height={40}
                   className="rounded-full"
+                  unoptimized={item.avatar.includes("dicebear.com")}
                 />
                 <div>
                   <p className="text-sm font-medium">{item.author}</p>
