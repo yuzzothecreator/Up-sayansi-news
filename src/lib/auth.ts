@@ -36,7 +36,7 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.BETTER_AUTH_URL ?? process.env.NEXT_PUBLIC_APP_URL,
   database: prismaAdapter(prisma, {
-    provider: "postgresql",
+    provider: "mysql",
   }),
   emailAndPassword: {
     enabled: true,
@@ -128,7 +128,7 @@ export async function getServerSession() {
       user: mapSessionUser(session.user),
     };
   } catch {
-    // Auth depends on Postgres — return null when the DB is offline.
+    // Auth depends on the database — return null when the DB is offline.
     return null;
   }
 }

@@ -74,7 +74,15 @@ export function MobileNav({ trigger }: MobileNavProps) {
             <Button
               variant="outline"
               className="w-full rounded-xl"
-              onClick={() => signOut()}
+              onClick={() =>
+                signOut({
+                  fetchOptions: {
+                    onSuccess: () => {
+                      window.location.assign("/");
+                    },
+                  },
+                })
+              }
             >
               Sign out
             </Button>
@@ -82,10 +90,10 @@ export function MobileNav({ trigger }: MobileNavProps) {
         ) : (
           <div className="grid gap-2">
             <Button variant="outline" asChild className="rounded-xl">
-              <Link href="/sign-in">Sign in</Link>
+              <Link href="/login">Sign in</Link>
             </Button>
             <Button asChild className="rounded-xl shadow-soft">
-              <Link href="/sign-up">Get started</Link>
+              <Link href="/register">Get started</Link>
             </Button>
           </div>
         )}

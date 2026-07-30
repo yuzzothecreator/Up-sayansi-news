@@ -13,7 +13,7 @@ type PageProps = {
 export default async function EditPostPage({ params }: PageProps) {
   const { id } = await params;
   const user = await getCurrentUser();
-  if (!user) redirect("/sign-in");
+  if (!user) redirect("/login");
 
   const [result, categories, tags] = await Promise.all([
     getPostByIdAction(id),

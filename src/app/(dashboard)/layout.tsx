@@ -12,11 +12,11 @@ export default async function DashboardLayout({
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect("/sign-in?callbackUrl=/dashboard");
+    redirect("/login?callbackUrl=/dashboard");
   }
 
   if (user.banned) {
-    redirect("/sign-in?error=banned");
+    redirect("/login?error=banned");
   }
 
   const unreadCount = await notificationsService.getUnreadCount(user.id);

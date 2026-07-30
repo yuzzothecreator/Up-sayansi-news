@@ -12,7 +12,7 @@ export default async function AdminLayout({
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect("/sign-in?callbackUrl=/admin");
+    redirect("/login?callbackUrl=/admin");
   }
 
   if (!hasMinimumRole(user.role, "EDITOR")) {

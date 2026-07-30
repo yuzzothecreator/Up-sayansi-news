@@ -6,7 +6,7 @@ import { PostEditor } from "@/features/editor/post-editor";
 
 export default async function NewPostPage() {
   const user = await getCurrentUser();
-  if (!user) redirect("/sign-in");
+  if (!user) redirect("/login");
 
   const [categories, tags] = await Promise.all([listCategories(), listTags()]);
 

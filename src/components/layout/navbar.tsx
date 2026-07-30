@@ -137,7 +137,15 @@ export function Navbar() {
                     ))}
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
-                      onClick={() => signOut()}
+                      onClick={() =>
+                        signOut({
+                          fetchOptions: {
+                            onSuccess: () => {
+                              window.location.assign("/");
+                            },
+                          },
+                        })
+                      }
                       className="text-destructive focus:text-destructive"
                     >
                       <LogOut className="size-4" />

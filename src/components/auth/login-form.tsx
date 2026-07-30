@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,7 +25,9 @@ import type { SignInInput } from "@/lib/validators/auth";
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const form = useForm({
     resolver: zodResolver(signInSchema),
@@ -38,13 +40,13 @@ export function LoginForm() {
         email: values.email,
         password: values.password,
         rememberMe: values.rememberMe,
-        callbackURL: "/",
+        callbackURL: callbackUrl,
       });
       if (error) {
         toast.error(error.message ?? "Invalid credentials");
       } else {
         toast.success("Welcome back!");
-        router.push("/");
+        router.push(callbackUrl);
         router.refresh();
       }
     });

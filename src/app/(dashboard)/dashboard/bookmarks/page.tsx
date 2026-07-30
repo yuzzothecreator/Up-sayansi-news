@@ -10,7 +10,7 @@ import { formatRelativeTime } from "@/lib/utils";
 
 export default async function DashboardBookmarksPage() {
   const user = await getCurrentUser();
-  if (!user) redirect("/sign-in");
+  if (!user) redirect("/login");
 
   const { data: bookmarks } = await getBookmarks(user.id);
 
