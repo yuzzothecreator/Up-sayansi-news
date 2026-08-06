@@ -46,7 +46,10 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans antialiased">
+      <body
+        className="min-h-full flex flex-col font-sans antialiased"
+        suppressHydrationWarning
+      >
         <Script id="pulse-theme-init" strategy="beforeInteractive">
           {themeInitScript}
         </Script>
