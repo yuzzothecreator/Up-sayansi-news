@@ -48,7 +48,7 @@ export default async function AdminCommentsPage() {
                   <TableCell>{comment.author.name}</TableCell>
                   <TableCell>
                     <Link
-                      href={`/posts/${comment.post.slug}`}
+                      href={`/blog/${comment.post.slug}`}
                       className="text-primary hover:underline"
                     >
                       {truncate(comment.post.title, 40)}

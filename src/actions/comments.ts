@@ -44,7 +44,7 @@ export async function createCommentAction(input: unknown): Promise<ActionResult<
         type: parsed.parentId ? "REPLY" : "COMMENT",
         title: parsed.parentId ? "New reply" : "New comment",
         message: `${user.name} commented on "${post.title}"`,
-        link: `/posts/${post.slug}#comment-${comment.id}`,
+        link: `/blog/${post.slug}#comment-${comment.id}`,
         postId: parsed.postId,
         commentId: comment.id,
       });
@@ -52,7 +52,7 @@ export async function createCommentAction(input: unknown): Promise<ActionResult<
 
     if (post) {
       revalidateTag(CACHE_TAGS.post(post.slug), "max");
-      revalidatePath(`/posts/${post.slug}`);
+      revalidatePath(`/blog/${post.slug}`);
     }
     return actionSuccess({ id: comment.id });
   } catch (error) {
@@ -109,7 +109,7 @@ export async function deleteCommentAction(input: unknown): Promise<ActionResult>
 
     if (post) {
       revalidateTag(CACHE_TAGS.post(post.slug), "max");
-      revalidatePath(`/posts/${post.slug}`);
+      revalidatePath(`/blog/${post.slug}`);
     }
     return actionSuccess();
   } catch (error) {

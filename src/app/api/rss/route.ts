@@ -22,7 +22,7 @@ export async function GET() {
 
     const items = posts
       .map((post) => {
-        const url = absoluteUrl(`/posts/${post.slug}`);
+        const url = absoluteUrl(`/blog/${post.slug}`);
         const pubDate = post.publishedAt?.toUTCString() ?? new Date().toUTCString();
         const description = escapeXml(post.subtitle ?? post.title);
 

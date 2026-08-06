@@ -84,7 +84,7 @@ export default async function AdminOverviewPage() {
                 <div key={post.id} className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">
                     <span className="text-muted-foreground">{i + 1}.</span>
-                    <Link href={`/posts/${post.slug}`} className="font-medium hover:text-primary">
+                    <Link href={`/blog/${post.slug}`} className="font-medium hover:text-primary">
                       {post.title}
                     </Link>
                   </div>

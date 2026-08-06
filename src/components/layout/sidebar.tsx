@@ -34,7 +34,7 @@ const dashboardItems: SidebarItem[] = [
   { title: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { title: "Posts", href: "/dashboard/posts", icon: FileText },
   { title: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
-  { title: "Library", href: "/library", icon: Bookmark },
+  { title: "Library", href: "/dashboard/bookmarks", icon: Bookmark },
   {
     title: "Write",
     href: "/dashboard/posts/new",

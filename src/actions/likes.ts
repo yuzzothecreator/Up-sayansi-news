@@ -61,13 +61,13 @@ export async function likePostAction(input: unknown): Promise<ActionResult<{ lik
         type: "LIKE",
         title: "New like",
         message: `${user.name} liked "${post.title}"`,
-        link: `/posts/${post.slug}`,
+        link: `/blog/${post.slug}`,
         postId: post.id,
       });
     }
 
     revalidateTag(CACHE_TAGS.post(post.slug), "max");
-    revalidatePath(`/posts/${post.slug}`);
+    revalidatePath(`/blog/${post.slug}`);
     return actionSuccess({ liked: true });
   } catch (error) {
     return actionError(error);

@@ -16,7 +16,7 @@ export async function updateProfileAction(input: unknown): Promise<ActionResult>
     await usersService.updateProfile(user.id, parsed);
 
     revalidatePath(`/authors/${user.id}`);
-    revalidatePath("/settings/profile");
+    revalidatePath("/dashboard/settings");
     return actionSuccess();
   } catch (error) {
     return actionError(error);

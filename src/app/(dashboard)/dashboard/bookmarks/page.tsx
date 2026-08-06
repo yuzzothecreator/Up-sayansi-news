@@ -42,7 +42,7 @@ export default async function DashboardBookmarksPage() {
                 />
               )}
               <CardContent className="p-4">
-                <Link href={`/posts/${bookmark.post.slug}`} className="font-semibold hover:text-primary">
+                <Link href={`/blog/${bookmark.post.slug}`} className="font-semibold hover:text-primary">
                   {bookmark.post.title}
                 </Link>
                 {bookmark.post.subtitle && (

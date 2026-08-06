@@ -14,6 +14,9 @@ const textSizes = {
   lg: "text-2xl",
 } as const;
 
+/** Brand green sampled from the Up Sayansi NEWS mark */
+const BRAND_GREEN = "#084038";
+
 export function Logo({ className, showText = true, size = "md" }: LogoProps) {
   return (
     <Link
@@ -24,26 +27,19 @@ export function Logo({ className, showText = true, size = "md" }: LogoProps) {
         className,
       )}
       aria-label={`${siteConfig.name} home`}
+      style={{ color: BRAND_GREEN }}
     >
       {showText ? (
         <span
           className={cn(
-            "font-semibold tracking-tight text-foreground transition-opacity group-hover:opacity-80",
+            "font-semibold tracking-tight transition-opacity group-hover:opacity-80",
             textSizes[size],
           )}
         >
-          UpSayansi{" "}
-          <span className="text-[#05423a] dark:text-[#5eead4]">News</span>
+          UpSayansi News
         </span>
       ) : (
-        <span
-          className={cn(
-            "font-bold tracking-tight text-[#05423a] dark:text-[#5eead4]",
-            textSizes[size],
-          )}
-        >
-          U
-        </span>
+        <span className={cn("font-bold tracking-tight", textSizes[size])}>U</span>
       )}
     </Link>
   );

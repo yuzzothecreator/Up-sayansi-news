@@ -10,7 +10,7 @@ function warnOnceOffline() {
   if (warnedOffline || process.env.NODE_ENV === "production") return;
   warnedOffline = true;
   console.warn(
-    "[UpSayansi News] Database unavailable — serving mock data. Set USE_MOCK_DATA=false and configure DATABASE_URL when Postgres is ready.",
+    "[UpSayansi News] Database unavailable — serving mock data. Set USE_MOCK_DATA=false and configure DATABASE_URL when TiDB is ready.",
   );
 }
 
@@ -28,8 +28,7 @@ export async function safeCall<T>(fn: () => Promise<T>, fallback: T): Promise<T>
       warnOnceOffline();
       return fallback;
     }
-    console.error("[safeCall]", error);
-    return fallback;
+    throw error;
   }
 }
 
@@ -50,7 +49,6 @@ export async function safeCallNullable<T>(
       warnOnceOffline();
       return fallback;
     }
-    console.error("[safeCallNullable]", error);
-    return fallback;
+    throw error;
   }
 }

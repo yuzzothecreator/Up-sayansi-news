@@ -48,7 +48,7 @@ export const mainNav: NavItem[] = [
 export const authNav: NavItem[] = [
   {
     title: "Library",
-    href: "/library",
+    href: "/dashboard/bookmarks",
     icon: Bookmark,
     description: "Your saved stories and collections",
     requiresAuth: true,
@@ -65,13 +65,13 @@ export const authNav: NavItem[] = [
 export const userNav: NavItem[] = [
   {
     title: "Profile",
-    href: "/settings/profile",
+    href: "/dashboard",
     icon: User,
     requiresAuth: true,
   },
   {
     title: "Settings",
-    href: "/settings",
+    href: "/dashboard/settings",
     icon: Settings,
     requiresAuth: true,
   },

@@ -36,20 +36,20 @@ async function getHomeData() {
 
 export default async function HomePage() {
   const { featured, trending, latest, categories } = await getHomeData();
-  const heroPost = featured[0] ?? mockPostCards[0];
+  const heroPost = featured[0] ?? latest[0] ?? null;
 
   return (
     <>
       <HeroSection />
 
-      {heroPost && (
+      {heroPost ? (
         <Container className="pb-16">
           <FeaturedCard post={heroPost} priority />
         </Container>
-      )}
+      ) : null}
 
       <HomeContent
-        featured={featured.slice(1)}
+        featured={featured.slice(heroPost && featured[0] ? 1 : 0)}
         trending={trending}
         latest={latest}
         categories={categories}

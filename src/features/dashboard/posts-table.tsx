@@ -160,7 +160,7 @@ export function PostsTable({ posts: initialPosts, showAuthor = false }: PostsTab
                       </DropdownMenuItem>
                       {post.status === "PUBLISHED" && (
                         <DropdownMenuItem asChild>
-                          <Link href={`/posts/${post.slug}`} target="_blank">
+                          <Link href={`/blog/${post.slug}`} target="_blank">
                             <ExternalLink className="mr-2 size-4" />
                             View
                           </Link>

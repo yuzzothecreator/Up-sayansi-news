@@ -115,7 +115,7 @@ export default async function DashboardOverviewPage() {
                   >
                     <p>
                       <span className="font-medium">{comment.author.name}</span> commented on{" "}
-                      <Link href={`/posts/${comment.post.slug}`} className="text-primary">
+                      <Link href={`/blog/${comment.post.slug}`} className="text-primary">
                         {comment.post.title}
                       </Link>
                     </p>

@@ -45,6 +45,7 @@ export async function createPostAction(input: unknown): Promise<ActionResult<{ i
 
     revalidateTag(CACHE_TAGS.posts, "max");
     revalidatePath("/");
+    revalidatePath("/blog");
     return actionSuccess({ id: post.id, slug: post.slug });
   } catch (error) {
     return actionError(error);
@@ -79,7 +80,9 @@ export async function updatePostAction(input: unknown): Promise<ActionResult<{ s
 
     revalidateTag(CACHE_TAGS.posts, "max");
     revalidateTag(CACHE_TAGS.post(updated.slug), "max");
-    revalidatePath(`/posts/${updated.slug}`);
+    revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${updated.slug}`);
     return actionSuccess({ slug: updated.slug });
   } catch (error) {
     return actionError(error);
@@ -115,6 +118,7 @@ export async function deletePostAction(input: unknown): Promise<ActionResult> {
     revalidateTag(CACHE_TAGS.posts, "max");
     revalidateTag(CACHE_TAGS.post(post.slug), "max");
     revalidatePath("/");
+    revalidatePath("/blog");
     return actionSuccess();
   } catch (error) {
     return actionError(error);
@@ -157,6 +161,8 @@ export async function publishPostAction(input: unknown): Promise<ActionResult<{ 
     revalidateTag(CACHE_TAGS.featured, "max");
     revalidateTag(CACHE_TAGS.post(updated.slug), "max");
     revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${updated.slug}`);
     return actionSuccess({ slug: updated.slug });
   } catch (error) {
     return actionError(error);

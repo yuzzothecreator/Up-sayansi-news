@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { ContactForm } from "./contact-form";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -25,21 +26,21 @@ export default function ContactPage() {
             <Mail className="size-5 shrink-0 text-primary" />
             <div>
               <p className="font-medium">Email</p>
-              <p className="text-sm text-muted-foreground">hello@pulse.app</p>
+              <p className="text-sm text-muted-foreground">hello@upsayansi.news</p>
             </div>
           </div>
           <div className="flex gap-4 rounded-2xl border border-border/50 bg-card p-5 shadow-soft">
             <MessageSquare className="size-5 shrink-0 text-primary" />
             <div>
               <p className="font-medium">Support</p>
-              <p className="text-sm text-muted-foreground">support@pulse.app</p>
+              <p className="text-sm text-muted-foreground">support@upsayansi.news</p>
             </div>
           </div>
           <div className="flex gap-4 rounded-2xl border border-border/50 bg-card p-5 shadow-soft">
             <MapPin className="size-5 shrink-0 text-primary" />
             <div>
-              <p className="font-medium">Location</p>
-              <p className="text-sm text-muted-foreground">San Francisco, CA</p>
+              <p className="font-medium">Platform</p>
+              <p className="text-sm text-muted-foreground">{siteConfig.name}</p>
             </div>
           </div>
         </div>

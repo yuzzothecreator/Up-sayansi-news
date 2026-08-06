@@ -85,7 +85,7 @@ export default async function DashboardAnalyticsPage() {
                     </span>
                     <div>
                       <Link
-                        href={`/posts/${post.slug}`}
+                        href={`/blog/${post.slug}`}
                         className="font-medium hover:text-primary"
                       >
                         {post.title}
