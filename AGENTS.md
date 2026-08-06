@@ -3,3 +3,9 @@
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
+
+<!-- BEGIN:git-commit-rules -->
+# Git commits
+
+Never add `Co-authored-by: Cursor`, `Made-with: Cursor`, or any Cursor attribution to commits or PRs. Commits must use the repository owner's identity only.
+<!-- END:git-commit-rules -->

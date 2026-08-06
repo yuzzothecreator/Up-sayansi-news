@@ -1,0 +1,10 @@
+#!/bin/sh
+# Strip Cursor agent attribution so it never lands in commit history.
+COMMIT_MSG_FILE=$1
+
+if [ -f "$COMMIT_MSG_FILE" ]; then
+  sed -i '/^Co-authored-by: Cursor/d' "$COMMIT_MSG_FILE"
+  sed -i '/cursoragent@cursor\.com/d' "$COMMIT_MSG_FILE"
+  sed -i '/^Made-with: Cursor/d' "$COMMIT_MSG_FILE"
+  sed -i '/^Made-with Cursor/d' "$COMMIT_MSG_FILE"
+fi
