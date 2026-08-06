@@ -4,11 +4,11 @@ import { inferAdditionalFields } from "better-auth/client/plugins";
 const authPlugins = [
   inferAdditionalFields({
     user: {
-      role: { type: "string" },
-      banned: { type: "boolean" },
-      banReason: { type: "string" },
-      banExpires: { type: "date" },
-      verified: { type: "boolean" },
+      role: { type: "string", input: false },
+      banned: { type: "boolean", input: false },
+      banReason: { type: "string", input: false },
+      banExpires: { type: "date", input: false },
+      verified: { type: "boolean", input: false },
     },
   }),
 ];
@@ -48,39 +48,28 @@ function getAuthClient(): AuthClient {
   return serverClient;
 }
 
-function lazyAuthExport<K extends keyof AuthClient>(key: K): AuthClient[K] {
+/** Defer client creation without re-wrapping Better Auth's internal proxies. */
+function lazyNamespace<K extends keyof AuthClient>(key: K): AuthClient[K] {
   return new Proxy({} as AuthClient[K], {
     get(_target, prop) {
       const namespace = getAuthClient()[key];
-      const value = (namespace as Record<string | symbol, unknown>)[prop];
-      if (typeof value === "function") {
-        return (...args: unknown[]) => value.apply(namespace, args);
-      }
-      return value;
+      return namespace[prop as keyof AuthClient[K]];
     },
   });
 }
 
 export const authClient = new Proxy({} as AuthClient, {
   get(_target, prop) {
-    const client = getAuthClient();
-    const value = client[prop as keyof AuthClient];
-    if (typeof value === "function") {
-      return value.bind(client);
-    }
-    if (value !== null && typeof value === "object") {
-      return lazyAuthExport(prop as keyof AuthClient);
-    }
-    return value;
+    return getAuthClient()[prop as keyof AuthClient];
   },
 });
 
-export const signIn = lazyAuthExport("signIn");
-export const signUp = lazyAuthExport("signUp");
-export const signOut = lazyAuthExport("signOut");
+export const signIn = lazyNamespace("signIn");
+export const signUp = lazyNamespace("signUp");
+export const signOut = lazyNamespace("signOut");
 export const useSession: AuthClient["useSession"] = (...args) =>
   getAuthClient().useSession(...args);
-export const getSession = lazyAuthExport("getSession");
-export const requestPasswordReset = lazyAuthExport("requestPasswordReset");
-export const resetPassword = lazyAuthExport("resetPassword");
-export const sendVerificationEmail = lazyAuthExport("sendVerificationEmail");
+export const getSession = lazyNamespace("getSession");
+export const requestPasswordReset = lazyNamespace("requestPasswordReset");
+export const resetPassword = lazyNamespace("resetPassword");
+export const sendVerificationEmail = lazyNamespace("sendVerificationEmail");

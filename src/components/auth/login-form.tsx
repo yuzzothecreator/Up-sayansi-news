@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { AuthShell } from "@/components/auth/auth-shell";
+import { SocialAuthButtons } from "@/components/auth/social-auth-buttons";
 import { signIn } from "@/lib/auth-client";
 import { signInSchema } from "@/lib/validators/auth";
 import type { SignInInput } from "@/lib/validators/auth";
@@ -65,6 +66,7 @@ export function LoginForm() {
         </>
       }
     >
+      <SocialAuthButtons callbackURL={callbackUrl} className="mb-6" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField control={form.control} name="email" render={({ field }) => (

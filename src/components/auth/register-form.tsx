@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { AuthShell } from "@/components/auth/auth-shell";
+import { SocialAuthButtons } from "@/components/auth/social-auth-buttons";
 import { signUp } from "@/lib/auth-client";
 import { signUpSchema } from "@/lib/validators/auth";
 import type { SignUpInput } from "@/lib/validators/auth";
@@ -60,6 +61,7 @@ export function RegisterForm() {
         </>
       }
     >
+      <SocialAuthButtons callbackURL="/" className="mb-6" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField control={form.control} name="name" render={({ field }) => (
