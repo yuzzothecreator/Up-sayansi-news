@@ -28,7 +28,8 @@ export async function safeCall<T>(fn: () => Promise<T>, fallback: T): Promise<T>
       warnOnceOffline();
       return fallback;
     }
-    throw error;
+    console.error("[safeCall]", error);
+    return fallback;
   }
 }
 
@@ -49,6 +50,7 @@ export async function safeCallNullable<T>(
       warnOnceOffline();
       return fallback;
     }
-    throw error;
+    console.error("[safeCallNullable]", error);
+    return fallback;
   }
 }

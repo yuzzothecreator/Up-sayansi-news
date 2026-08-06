@@ -45,8 +45,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/library", destination: "/dashboard/bookmarks", permanent: false },
-      { source: "/settings", destination: "/dashboard/settings", permanent: false },
-      { source: "/settings/:path*", destination: "/dashboard/settings", permanent: false },
+      { source: "/settings/:path*", destination: "/dashboard/settings/:path*", permanent: false },
       { source: "/posts/:slug", destination: "/blog/:slug", permanent: true },
     ];
   },

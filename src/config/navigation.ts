@@ -65,7 +65,7 @@ export const authNav: NavItem[] = [
 export const userNav: NavItem[] = [
   {
     title: "Profile",
-    href: "/dashboard",
+    href: "/dashboard/settings",
     icon: User,
     requiresAuth: true,
   },

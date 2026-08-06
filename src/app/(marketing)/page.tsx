@@ -36,7 +36,8 @@ async function getHomeData() {
 
 export default async function HomePage() {
   const { featured, trending, latest, categories } = await getHomeData();
-  const heroPost = featured[0] ?? latest[0] ?? null;
+  const featuredHero = featured[0] ?? null;
+  const heroPost = featuredHero ?? latest[0] ?? null;
 
   return (
     <>
@@ -49,7 +50,7 @@ export default async function HomePage() {
       ) : null}
 
       <HomeContent
-        featured={featured.slice(heroPost && featured[0] ? 1 : 0)}
+        featured={featuredHero ? featured.slice(1) : featured}
         trending={trending}
         latest={latest}
         categories={categories}
